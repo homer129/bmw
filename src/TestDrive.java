@@ -13,8 +13,8 @@ public class TestDrive {
         Bmw bm4 = new Bmw(320, 5, "850i", 85000);
         Bmw bm5 = new Bmw(260, 4, "740d", 79000);
         Bmw[] bmAr = {bm1, bm2, bm3, bm4, bm5};
-
-            System.out.println(getCarMaxSpeed(msAr, bmAr));
+        
+        System.out.println(getCarVAndSpeed(ms1, bm5, "maxSpeed"));
     }
         
     public static String getCarV(Bmw bm, Mercedes ms) {
@@ -81,6 +81,34 @@ public class TestDrive {
         }        
     }
 
+    public static String getCarMinCost(Mercedes[] msAr) {
+        int mini = msAr[0].cost;
+        String minCostCar = "";
+        for (int i = 1; i < msAr.length; i++) {
+            if (mini > msAr[i].cost) {
+                mini = msAr[i].cost;
+                minCostCar = msAr[i].model;
+            }
+        }
+        return minCostCar;
+    }
 
+    public static String getCarVAndSpeed(Mercedes ms, Bmw bm, String parametr) {
+        if (parametr.equals("maxSpeed")) {
+            if (bm.maxSpeed > ms.maxSpeed) {
+                return "BMW_" + bm.model;
+            } else {
+                return "MERCEDES_" + ms.model;
+            }
+        }    
+        if (parametr.equals("v")) {
+            if (bm.v > ms.v) {
+                return "BMW";
+            } else {
+                return "MERCEDES";
+            }
+        }
+        return null;
+    }
 }
 

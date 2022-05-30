@@ -10,7 +10,7 @@ public class Mercedes {
         this.model = model;
         this.cost = cost;
 
-        
+
 
 
 
