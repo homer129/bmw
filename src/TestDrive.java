@@ -1,11 +1,11 @@
 public class TestDrive {
     
     public static void main(String[] args) {
-        Mercedes ms1 = new Mercedes(268, 1, "w212", 70001);
+        Mercedes ms1 = new Mercedes(280, 8, "w212", 70001);
         Mercedes ms2 = new Mercedes(262, 2, "w221", 70002);
-        Mercedes ms3 = new Mercedes(263, 6, "w205", 70008);
-        Mercedes ms4 = new Mercedes(269, 4, "w222", 70004);
-        Mercedes ms5 = new Mercedes(265, 7, "w204", 70005);
+        Mercedes ms3 = new Mercedes(266, 6, "w205", 70000);
+        Mercedes ms4 = new Mercedes(264, 4, "w222", 70004);
+        Mercedes ms5 = new Mercedes(270, 7, "w204", 70002);
         Mercedes[] msAr = {ms1, ms2, ms3, ms4, ms5};
         Bmw bm1 = new Bmw(290, 4, "540ix", 75000);
         Bmw bm2 = new Bmw(270, 2, "320i", 55000);
@@ -19,105 +19,63 @@ public class TestDrive {
 
     public static String getCar(Mercedes[] msAr1, String param1, String minORmax) {
         if (minORmax.equals("min")) {
-            return getCarMinAll(msAr1, param1);
-        } else if (minORmax.equals("max")) {
-            return getCarMaxAll(msAr1, param1);
+          return getCarMinAll(msAr1, param1);
+        } if (minORmax.equals("max")) {
+          return getCarMaxAll(msAr1, param1);
         }
         return null;
     }
         
-    public static String getCarMinAll(Mercedes[] msAr, String param) {     
-        if (param.equals("cost")) {
-            return getCarMinCost(msAr);
-        } else if (param.equals("v")) {
-            return getCarMinV(msAr);
-        } else if (param.equals("maxSpeed")) {            
-            return getCarMinMaxSpeed(msAr);                      
+    public static String getCarMaxAll(Mercedes[] msAr, String param) {
+        String maxAllCar = msAr[0].model;
+        int maxik1 = msAr[0].maxSpeed;
+        int maxik2 = msAr[0].v;
+        int maxik3 = msAr[0].cost;
+        for (int i = 1; i < msAr.length; i++) {
+            if (param.equals("maxSpeed")) {
+                if (maxik1 < msAr[i].maxSpeed) {
+                    maxik1 = msAr[i].maxSpeed;
+                    maxAllCar = msAr[i].model;
+                }
+            } if (param.equals("v")) {
+                if (maxik2 < msAr[i].v) {
+                    maxik2 = msAr[i].v;
+                    maxAllCar = msAr[i].model;
+                }
+            } if (param.equals("cost")) {
+                if (maxik3 < msAr[i].cost) {
+                    maxik3 = msAr[i].cost;
+                    maxAllCar = msAr[i].model;
+                }
+            }           
         }
-        return null;
+        return maxAllCar;
     }
     
-    public static String getCarMinCost(Mercedes[] msAr) {
-        String minCostCar = msAr[0].model;
-        int minik = msAr[0].cost;
-        for (int i = 1; i < msAr.length; i++) {                 
-            if (minik > msAr[i].cost) {
-                minik = msAr[i].cost;
-                minCostCar = msAr[i].model;
-            }
+    public static String getCarMinAll(Mercedes[] msAr, String param) {
+        String minAllCar = msAr[0].model;
+        int minik1 = msAr[0].maxSpeed;
+        int minik2 = msAr[0].v;
+        int minik3 = msAr[0].cost;
+        for (int i = 1; i < msAr.length; i++) {
+            if (param.equals("maxSpeed")) {
+                if (minik1 > msAr[i].maxSpeed) {
+                    minik1 = msAr[i].maxSpeed;
+                    minAllCar = msAr[i].model;
+                }
+            } else if (param.equals("v")) {                
+                if (minik2 > msAr[i].v) {
+                    minik2 = msAr[i].v;
+                    minAllCar = msAr[i].model;
+                }
+            } else if (param.equals("cost")) {
+                if (minik3 > msAr[i].cost) {
+                    minik3 = msAr[i].cost;
+                    minAllCar = msAr[i].model;
+                }
+            }           
         }
-        return minCostCar;
-    }
-
-    public static String getCarMinV(Mercedes[] msAr) {
-        String minVCar = msAr[0].model;
-        int minik = msAr[0].v;
-        for (int i = 1; i < msAr.length; i++) {                 
-            if (minik > msAr[i].v) {
-                minik = msAr[i].v;
-                minVCar = msAr[i].model;
-            }
-        }
-        return minVCar;
-    }
-
-    public static String getCarMinMaxSpeed(Mercedes[] msAr) {
-        String minMaxSpeedCar = msAr[0].model;
-        int minik = msAr[0].maxSpeed;
-        for (int i = 1; i < msAr.length; i++) {                 
-            if (minik > msAr[i].maxSpeed) {
-                minik = msAr[i].maxSpeed;
-                minMaxSpeedCar = msAr[i].model;
-            }
-        }
-        return minMaxSpeedCar;
-    }
-
-    public static String getCarMaxAll(Mercedes[] msAr, String param) {
-        if (param.equals("cost")) {
-            return getCarMaxCost(msAr);
-        } else if (param.equals("v")) {
-            return getCarMaxV(msAr);
-        } else if (param.equals("maxSpeed")) {            
-            return getCarMaxMaxSpeed(msAr);                      
-        }
-        return null;
-    }
-
-    public static String getCarMaxCost(Mercedes[] msAr) {
-        String maxCostCar = msAr[0].model;
-        int maxik = msAr[0].cost;
-        for (int i = 1; i < msAr.length; i++) {                 
-            if (maxik < msAr[i].cost) {
-                maxik = msAr[i].cost;
-                maxCostCar = msAr[i].model;
-            }
-        }
-        return maxCostCar;
-    }
-
-    public static String getCarMaxV(Mercedes[] msAr) {
-        String maxVCar = msAr[0].model;
-        int maxik = msAr[0].v;
-        for (int i = 1; i < msAr.length; i++) {                 
-            if (maxik < msAr[i].v) {
-                maxik = msAr[i].v;
-                maxVCar = msAr[i].model;
-            }
-        }
-        return maxVCar;
-    }
-
-    public static String getCarMaxMaxSpeed(Mercedes[] msAr) {
-        String maxMaxSpeedCar = msAr[0].model;
-        int maxik = msAr[0].maxSpeed;
-        for (int i = 1; i < msAr.length; i++) {                 
-            if (maxik < msAr[i].maxSpeed) {
-                maxik = msAr[i].maxSpeed;
-                maxMaxSpeedCar = msAr[i].model;
-            }
-        }
-        return maxMaxSpeedCar;
-    }    
+        return minAllCar;
+    } 
 }
 
